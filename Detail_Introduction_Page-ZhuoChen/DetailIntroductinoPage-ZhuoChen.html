@@ -19,12 +19,12 @@
             scroll-behavior: smooth;
         }
 
-        /* --- NAVIGATION (MORE TRANSPARENT + GLASS MORPHISM) --- */
+        /* --- NAVIGATION --- */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.75); /* MORE TRANSPARENT */
+            background: rgba(255, 255, 255, 0.75);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             z-index: 999;
@@ -56,7 +56,6 @@
             position: relative;
         }
 
-        /* NAV HOVER ANIMATION */
         .nav-menu a:hover {
             color: #007bff;
             transform: translateY(-2px);
@@ -75,6 +74,30 @@
 
         .nav-menu a:hover::after {
             width: 100%;
+        }
+
+        /* --- SEARCH BOX --- */
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-input {
+            width: 0;
+            padding: 0;
+            border: none;
+            outline: none;
+            border-radius: 6px;
+            font-size: 14px;
+            background: rgba(255,255,255,0.9);
+            transition: all 0.3s ease;
+        }
+
+        .search-input.active {
+            width: 180px;
+            padding: 6px 12px;
+            border: 1px solid #ddd;
         }
 
         .nav-actions {
@@ -151,7 +174,7 @@
             padding-left: 8px;
         }
 
-        /* --- HERO SECTION (FULLSCREEN IMAGE + TEXT BELOW CENTERED) --- */
+        /* --- HERO --- */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -239,7 +262,7 @@
             transform: translateY(-3px);
         }
 
-        /* --- SECTION STYLE --- */
+        /* --- SECTION --- */
         .section {
             padding: 80px 5%;
             text-align: center;
@@ -258,25 +281,26 @@
         }
 
         .full-img {
-            width: 120%;
+            width: 100%;
             max-width: 1100px;
             margin: 0 auto;
             border-radius: 14px;
         }
 
         .full-video{
-            width: 150%;
+            width: 100%;
             max-width: 1100px;
             margin: 0 auto;
             border-radius: 14px;
         }
+
         /* --- GRID --- */
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 40px;
+            gap: 50px;
             align-items: center;
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
@@ -288,7 +312,19 @@
             margin: 0 auto;
         }
 
-        /* --- COLOR SWITCHER WITH TOP IMAGE --- */
+        /* --- CAMERA SECTION ENLARGED & BALANCED --- */
+        #camera img {
+            width: 100%;
+            transform: scale(1.05);
+            border-radius: 12px;
+        }
+
+        #camera .grid-2 div:last-child {
+            transform: scale(1.05);
+            line-height: 1.7;
+        }
+
+        /* --- COLOR SWITCHER --- */
         .color-preview {
             width: 100%;
             max-width: 1100px;
@@ -322,8 +358,8 @@
         }
 
         .dot-orange { background: linear-gradient(45deg, #4a90e2, #fff, #ff9500); }
-        .dot-purple { background: linear-gradient(45deg, #6a5acd, #ff69b4); }
-        .dot-green { background: linear-gradient(45deg, #90ee90, #fff); }
+        .dot-purple { background: linear-gradient(45deg, #6a5acd, #fddfcb); }
+        .dot-green { background: linear-gradient(45deg, #5ca05c, #fff); }
         .dot-gold { background: #f3e9d5; }
         .dot-black { background: #111; }
 
@@ -418,13 +454,55 @@
             border-top: 1px solid #eee;
         }
 
-        /* --- RESPONSIVE --- */
+        /* ------------------------------ */
+        /* --- RESPONSIVE FOR TABLET & PHONE --- */
+        /* ------------------------------ */
+        @media (max-width: 1024px) {
+            .grid-2 {
+                gap: 30px;
+                padding: 0 20px;
+            }
+            #camera img {
+                transform: scale(1.02);
+            }
+        }
+
         @media (max-width: 768px) {
             .nav-menu, .nav-actions { display: none; }
             .hamburger { display: block; }
-            .hero-img { height: 50vh; }
-            .hero-text h1 { font-size: 32px; }
-            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+            .hero-img { height: 45vh; }
+            .hero-text h1 { font-size: 30px; }
+            .hero-text .slogan { font-size: 16px; }
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            #camera .grid-2 div:last-child {
+                text-align: center;
+                transform: scale(1);
+            }
+            .section h2 {
+                font-size: 26px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 80px 15px 40px;
+            }
+            .hero-img {
+                height: 38vh;
+            }
+            .hero-text h1 {
+                font-size: 24px;
+            }
+            .btn-primary, .btn-secondary {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            .section {
+                padding: 50px 15px;
+            }
         }
     </style>
 </head>
@@ -442,7 +520,10 @@
             <a href="#battery">Battery</a>
         </div>
         <div class="nav-actions">
-            <span>🔍</span>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search...">
+                <span id="searchIcon">🔍</span>
+            </div>
             <span>🛒</span>
             <button class="btn-reserve">Login / Reserve</button>
         </div>
@@ -482,14 +563,14 @@
         <video class="full-video" src="DragonGodXProMaxVedio.mp4" alt="Video" autoplay muted loop></video>
     </section>
 
-    <!-- CAMERA -->
+    <!-- CAMERA (ENLARGED & BALANCED) -->
     <section class="section" id="camera">
         <h2>Ultra Lighting Image System</h2>
         <div class="grid-2">
             <div>
-                <img src="DragonGodXProMaxCamera.png" style="width:100%;border-radius:10px;">
+                <img src="DragonGodXProMaxCamera.png" alt="Camera">
             </div>
-            <div style="text-align:left;">
+            <div>
                 <h3>Professional-Grade Camera</h3>
                 <p>Main Camera • Ultra Wide • Telephoto • Front Camera</p>
                 <p>Stunning night mode, portrait, and ultra-clear photography</p>
@@ -526,7 +607,7 @@
         </div>
     </section>
 
-    <!-- COLOR SWITCHER WITH PREVIEW IMAGE -->
+    <!-- COLOR SWITCHER -->
     <section class="section">
         <h2>Choose Your Color</h2>
         <img id="colorPreview" class="color-preview" src="design-color-1.png" alt="Color Preview">
@@ -591,7 +672,7 @@
     </footer>
 
     <script>
-        // HAMBURGER MENU TOGGLE
+        // HAMBURGER MENU
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobileMenu');
         hamburger.addEventListener('mouseenter', () => {
@@ -603,7 +684,26 @@
             }, 300);
         });
 
-        // COLOR SWITCHER WITH IMAGE UPDATE
+        // ------------------------------
+        // SEARCH BOX (EXPAND ON CLICK / CLOSE WHEN EMPTY)
+        // ------------------------------
+        const searchIcon = document.getElementById('searchIcon');
+        const searchInput = document.querySelector('.search-input');
+
+        searchIcon.addEventListener('click', () => {
+            searchInput.classList.toggle('active');
+            if (searchInput.classList.contains('active')) {
+                searchInput.focus();
+            }
+        });
+
+        searchInput.addEventListener('input', () => {
+            if (searchInput.value.trim() === '') {
+                searchInput.classList.remove('active');
+            }
+        });
+
+        // COLOR SWITCHER
         const dots = document.querySelectorAll('.color-dot');
         const mainImg = document.getElementById('mainPhone');
         const colorPreview = document.getElementById('colorPreview');
