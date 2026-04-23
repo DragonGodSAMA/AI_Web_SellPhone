@@ -14,25 +14,26 @@
 
         body {
             color: #333;
-            background: #fff;
+            background: #fffcf6;
             line-height: 1.6;
             scroll-behavior: smooth;
         }
 
-        /* Navigation Bar */
+        /* --- NAVIGATION (MORE TRANSPARENT + GLASS MORPHISM) --- */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.92);
+            background: rgba(255, 255, 255, 0.75); /* MORE TRANSPARENT */
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             z-index: 999;
-            padding: 16px 5%;
+            padding: 18px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            transition: all 0.3s ease;
         }
 
         .logo {
@@ -43,100 +44,202 @@
 
         .nav-menu {
             display: flex;
-            gap: 32px;
+            gap: 36px;
         }
 
         .nav-menu a {
             text-decoration: none;
             color: #333;
             font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        /* NAV HOVER ANIMATION */
+        .nav-menu a:hover {
+            color: #007bff;
+            transform: translateY(-2px);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: #007bff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
         }
 
         .nav-actions {
             display: flex;
-            gap: 20px;
+            gap: 22px;
             align-items: center;
         }
 
+        .nav-actions span {
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-actions span:hover {
+            color: #007bff;
+            transform: scale(1.1);
+        }
+
         .btn-reserve {
-            background: #1a3b6d;
+            background: #005bb5;
             color: white;
-            padding: 8px 16px;
+            padding: 9px 18px;
             border-radius: 6px;
             border: none;
             cursor: pointer;
             font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-reserve:hover {
+            background: #007bff;
+            transform: translateY(-2px);
         }
 
         .hamburger {
             display: none;
-            font-size: 24px;
+            font-size: 26px;
             cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
         }
 
-        /* Hero Section */
+        .hamburger:hover {
+            color: #007bff;
+            transform: rotate(90deg);
+        }
+
+        /* MOBILE MENU */
+        .mobile-menu {
+            position: fixed;
+            top: 70px;
+            right: 0;
+            width: 240px;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            flex-direction: column;
+            gap: 16px;
+            box-shadow: -2px 4px 10px rgba(0,0,0,0.1);
+            display: none;
+            z-index: 998;
+        }
+
+        .mobile-menu a {
+            text-decoration: none;
+            color: #333;
+            padding: 10px 0;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu a:hover {
+            color: #007bff;
+            padding-left: 8px;
+        }
+
+        /* --- HERO SECTION (FULLSCREEN IMAGE + TEXT BELOW CENTERED) --- */
         .hero {
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            padding: 120px 5% 60px;
+            justify-content: center;
+            padding: 100px 20px 60px;
             background: linear-gradient(to bottom, #f9f9f9, #f1f1f1);
-            gap: 40px;
-        }
-
-        .hero-img {
-            flex: 1.2;
+            position: relative;
+            overflow: hidden;
             text-align: center;
         }
 
+        .hero-img {
+            width: 100%;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         .hero-img img {
-            max-width: calc(100% + 20px);
-            animation: float 3s ease-in-out infinite;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            max-width: 1400px;
+            border-radius: 12px;
         }
 
         .hero-text {
-            flex: 1;
+            margin-top: 30px;
+            text-align: center;
+            width: 100%;
         }
 
         .hero-text h1 {
-            font-size: 48px;
-            margin-bottom: 16px;
-            line-height: 1.2;
+            font-size: 46px;
+            margin-bottom: 12px;
+            font-weight: 700;
         }
 
         .hero-text .slogan {
-            font-size: 20px;
+            font-size: 19px;
             color: #666;
-            margin-bottom: 24px;
+            margin-bottom: 26px;
         }
 
         .hero-buttons {
             display: flex;
             gap: 16px;
-            margin-top: 30px;
+            justify-content: center;
+            margin-top: 10px;
         }
 
         .btn-primary {
-            background: #1a3b6d;
+            background: #005bb5;
             color: white;
-            padding: 14px 28px;
+            padding: 14px 32px;
             border-radius: 8px;
             border: none;
             font-size: 16px;
             cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: #007bff;
+            transform: translateY(-3px);
         }
 
         .btn-secondary {
             background: transparent;
-            color: #1a3b6d;
-            border: 1px solid #1a3b6d;
-            padding: 14px 28px;
+            color: #005bb5;
+            border: 1px solid #005bb5;
+            padding: 14px 32px;
             border-radius: 8px;
             font-size: 16px;
             cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        /* Section Default */
+        .btn-secondary:hover {
+            background: #f0f7ff;
+            transform: translateY(-3px);
+        }
+
+        /* --- SECTION STYLE --- */
         .section {
             padding: 80px 5%;
             text-align: center;
@@ -144,24 +247,30 @@
 
         .section h2 {
             font-size: 34px;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
+            font-weight: 700;
         }
 
         .section p {
             color: #666;
             max-width: 700px;
-            margin: 0 auto 40px;
+            margin: 0 auto 36px;
         }
 
-        /* Full Width Image */
         .full-img {
-            width: 100%;
-            max-width: 1000px;
+            width: 120%;
+            max-width: 1100px;
             margin: 0 auto;
-            border-radius: 12px;
+            border-radius: 14px;
         }
 
-        /* Grid Layout */
+        .full-video{
+            width: 150%;
+            max-width: 1100px;
+            margin: 0 auto;
+            border-radius: 14px;
+        }
+        /* --- GRID --- */
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -179,24 +288,37 @@
             margin: 0 auto;
         }
 
-        /* Color Switcher */
+        /* --- COLOR SWITCHER WITH TOP IMAGE --- */
+        .color-preview {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto 30px;
+            border-radius: 12px;
+        }
+
         .color-switcher {
-            margin-top: 40px;
+            margin-top: 20px;
             display: flex;
             justify-content: center;
-            gap: 16px;
+            gap: 18px;
         }
 
         .color-dot {
-            width: 30px;
-            height: 30px;
+            width: 34px;
+            height: 34px;
             border-radius: 50%;
             cursor: pointer;
             border: 2px solid transparent;
+            transition: all 0.3s ease;
         }
 
         .color-dot.active {
             border-color: #333;
+            transform: scale(1.15);
+        }
+
+        .color-dot:hover {
+            transform: scale(1.1);
         }
 
         .dot-orange { background: linear-gradient(45deg, #4a90e2, #fff, #ff9500); }
@@ -205,11 +327,11 @@
         .dot-gold { background: #f3e9d5; }
         .dot-black { background: #111; }
 
-        /* Spec Tabs */
+        /* --- SPECS --- */
         .spec-tabs {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 24px;
             margin-bottom: 30px;
             flex-wrap: wrap;
         }
@@ -218,11 +340,16 @@
             padding: 10px 20px;
             cursor: pointer;
             border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
         }
 
         .spec-tab.active {
-            border-color: #1a3b6d;
+            border-color: #007bff;
             font-weight: 600;
+        }
+
+        .spec-tab:hover {
+            color: #007bff;
         }
 
         .spec-content {
@@ -234,11 +361,11 @@
         .spec-row {
             display: flex;
             justify-content: space-between;
-            padding: 12px 0;
+            padding: 14px 0;
             border-bottom: 1px solid #eee;
         }
 
-        /* Storage Selector */
+        /* --- PRICING --- */
         .storage-options {
             display: flex;
             justify-content: center;
@@ -247,24 +374,29 @@
         }
 
         .storage {
-            padding: 12px 24px;
+            padding: 14px 26px;
             border: 1px solid #ddd;
             border-radius: 8px;
             cursor: pointer;
+            transition: all 0.3s ease;
         }
 
         .storage.active {
-            border-color: #1a3b6d;
+            border-color: #007bff;
             background: #f5f9ff;
         }
 
+        .storage:hover {
+            border-color: #007bff;
+        }
+
         .price {
-            font-size: 32px;
+            font-size: 36px;
             font-weight: 700;
             margin: 20px 0;
         }
 
-        /* Footer */
+        /* --- FOOTER --- */
         footer {
             background: #f8f8f8;
             padding: 60px 5% 30px;
@@ -286,24 +418,20 @@
             border-top: 1px solid #eee;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        /* Responsive */
+        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             .nav-menu, .nav-actions { display: none; }
             .hamburger { display: block; }
-            .hero { flex-direction: column; text-align: center; }
+            .hero-img { height: 50vh; }
+            .hero-text h1 { font-size: 32px; }
             .grid-2, .grid-3 { grid-template-columns: 1fr; }
-            .hero-text h1 { font-size: 34px; }
         }
     </style>
 </head>
+
 <body>
 
-    <!-- Navigation Bar -->
+    <!-- NAV -->
     <nav>
         <div class="logo">DragonGod</div>
         <div class="nav-menu">
@@ -318,10 +446,21 @@
             <span>🛒</span>
             <button class="btn-reserve">Login / Reserve</button>
         </div>
-        <div class="hamburger">☰</div>
+        <div class="hamburger" id="hamburger">☰</div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#design">Design</a>
+        <a href="#camera">Camera</a>
+        <a href="#display">Display</a>
+        <a href="#performance">Performance</a>
+        <a href="#battery">Battery</a>
+        <a href="#">Login</a>
+        <a href="#">Cart</a>
+    </div>
+
+    <!-- HERO -->
     <section class="hero">
         <div class="hero-img">
             <img id="mainPhone" src="design-color-1.png" alt="Flagship Phone">
@@ -336,19 +475,19 @@
         </div>
     </section>
 
-    <!-- Design & Appearance -->
+    <!-- DESIGN -->
     <section class="section" id="design">
         <h2>Ultra Premium Design</h2>
         <p>Sleek curvature, premium craftsmanship, iconic camera module</p>
-        <img class="full-img" src="DragonGodXProMax.png" alt="Design">
+        <video class="full-video" src="DragonGodXProMaxVedio.mp4" alt="Video" autoplay muted loop></video>
     </section>
 
-    <!-- Camera System -->
+    <!-- CAMERA -->
     <section class="section" id="camera">
         <h2>Ultra Lighting Image System</h2>
         <div class="grid-2">
             <div>
-                <img src="design-color-1.png" style="width:100%;border-radius:8px;">
+                <img src="DragonGodXProMaxCamera.png" style="width:100%;border-radius:10px;">
             </div>
             <div style="text-align:left;">
                 <h3>Professional-Grade Camera</h3>
@@ -358,24 +497,26 @@
         </div>
     </section>
 
-    <!-- Display -->
+    <!-- DISPLAY -->
     <section class="section" id="display">
-        <h2>Ultimate HD Eye-Care Flagship Flat Screen</h2>
+        <h2>Ultimate HD Eye-Care Flagship Screen</h2>
         <p>High resolution • High refresh rate • Peak brightness • Eye protection</p>
         <div class="grid-3">
             <div>6.85-inch</div>
             <div>120Hz</div>
             <div>2800 nits</div>
         </div>
+        <br>
+        <img class="full-img" src="DragonGodXProMax.png" alt="Display Image">
     </section>
 
-    <!-- Performance -->
+    <!-- PERFORMANCE -->
     <section class="section" id="performance">
         <h2>Flagship Performance + Smooth Experience</h2>
         <p>Top processor, large RAM, efficient cooling system</p>
     </section>
 
-    <!-- Battery -->
+    <!-- BATTERY -->
     <section class="section" id="battery">
         <h2>All-Day Battery & Fast Charging</h2>
         <div class="grid-3">
@@ -385,19 +526,20 @@
         </div>
     </section>
 
-    <!-- Color Switcher -->
+    <!-- COLOR SWITCHER WITH PREVIEW IMAGE -->
     <section class="section">
         <h2>Choose Your Color</h2>
+        <img id="colorPreview" class="color-preview" src="design-color-1.png" alt="Color Preview">
         <div class="color-switcher">
-            <div class="color-dot dot-orange active" data-color="Orange Sea"></div>
-            <div class="color-dot dot-purple" data-color="Sunset Purple"></div>
-            <div class="color-dot dot-green" data-color="Emerald Lake"></div>
-            <div class="color-dot dot-gold" data-color="Dawn Gold"></div>
-            <div class="color-dot dot-black" data-color="Obsidian Black"></div>
+            <div class="color-dot dot-orange active" data-img="design-color-1.png"></div>
+            <div class="color-dot dot-purple" data-img="design-color-2.png"></div>
+            <div class="color-dot dot-green" data-img="design-color-3.png"></div>
+            <div class="color-dot dot-gold" data-img="design-color-4.png"></div>
+            <div class="color-dot dot-black" data-img="design-color-5.png"></div>
         </div>
     </section>
 
-    <!-- Specifications -->
+    <!-- SPECS -->
     <section class="section">
         <h2>Full Specifications</h2>
         <div class="spec-tabs">
@@ -414,7 +556,7 @@
         </div>
     </section>
 
-    <!-- Pricing -->
+    <!-- PRICING -->
     <section class="section" style="background:#f9f9f9;">
         <h2>Buy Now</h2>
         <div class="storage-options">
@@ -427,7 +569,7 @@
         <p style="margin-top:20px;">Nationwide warranty • Interest-free installments • Trade-in</p>
     </section>
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer>
         <div class="footer-top">
             <div>
@@ -444,23 +586,38 @@
             </div>
         </div>
         <div class="footer-bottom">
-            © 2025 DragonGod Phone. All rights reserved.
+            © 2025 DragonGod Technology. All rights reserved.
         </div>
     </footer>
 
     <script>
-        // Color Switcher
+        // HAMBURGER MENU TOGGLE
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        hamburger.addEventListener('mouseenter', () => {
+            mobileMenu.style.display = 'flex';
+        });
+        hamburger.addEventListener('mouseleave', () => {
+            setTimeout(() => {
+                mobileMenu.style.display = 'none';
+            }, 300);
+        });
+
+        // COLOR SWITCHER WITH IMAGE UPDATE
         const dots = document.querySelectorAll('.color-dot');
         const mainImg = document.getElementById('mainPhone');
+        const colorPreview = document.getElementById('colorPreview');
         dots.forEach(dot => {
             dot.addEventListener('click', () => {
                 dots.forEach(d => d.classList.remove('active'));
                 dot.classList.add('active');
-                mainImg.src = "https://via.placeholder.com/340x700/" + dot.classList[1].split('-')[1] + "/ffffff?text=" + dot.dataset.color;
+                const imgSrc = dot.getAttribute('data-img');
+                mainImg.src = imgSrc;
+                colorPreview.src = imgSrc;
             });
         });
 
-        // Spec Tabs
+        // SPEC TABS
         const tabs = document.querySelectorAll('.spec-tab');
         tabs.forEach(tab => {
             tab.addEventListener('click', () => {
@@ -469,7 +626,7 @@
             });
         });
 
-        // Storage Selector
+        // STORAGE & PRICE
         const storages = document.querySelectorAll('.storage');
         const price = document.querySelector('.price');
         const prices = [999, 1199, 1499];
