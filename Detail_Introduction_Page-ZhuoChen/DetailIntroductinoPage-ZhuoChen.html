@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DragonGod X Pro Max - Premium Flagship Smartphone</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            color: #333;
+            background: #fff;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 999;
+            padding: 16px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+            color: #111;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .btn-reserve {
+            background: #1a3b6d;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 5% 60px;
+            background: linear-gradient(to bottom, #f9f9f9, #f1f1f1);
+            gap: 40px;
+        }
+
+        .hero-img {
+            flex: 1.2;
+            text-align: center;
+        }
+
+        .hero-img img {
+            max-width: calc(100% + 20px);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 48px;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .hero-text .slogan {
+            font-size: 20px;
+            color: #666;
+            margin-bottom: 24px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            margin-top: 30px;
+        }
+
+        .btn-primary {
+            background: #1a3b6d;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #1a3b6d;
+            border: 1px solid #1a3b6d;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* Section Default */
+        .section {
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .section h2 {
+            font-size: 34px;
+            margin-bottom: 20px;
+        }
+
+        .section p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        /* Full Width Image */
+        .full-img {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            border-radius: 12px;
+        }
+
+        /* Grid Layout */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Color Switcher */
+        .color-switcher {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .color-dot {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .color-dot.active {
+            border-color: #333;
+        }
+
+        .dot-orange { background: linear-gradient(45deg, #4a90e2, #fff, #ff9500); }
+        .dot-purple { background: linear-gradient(45deg, #6a5acd, #ff69b4); }
+        .dot-green { background: linear-gradient(45deg, #90ee90, #fff); }
+        .dot-gold { background: #f3e9d5; }
+        .dot-black { background: #111; }
+
+        /* Spec Tabs */
+        .spec-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .spec-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+        }
+
+        .spec-tab.active {
+            border-color: #1a3b6d;
+            font-weight: 600;
+        }
+
+        .spec-content {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .spec-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Storage Selector */
+        .storage-options {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 30px 0;
+        }
+
+        .storage {
+            padding: 12px 24px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .storage.active {
+            border-color: #1a3b6d;
+            background: #f5f9ff;
+        }
+
+        .price {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 20px 0;
+        }
+
+        /* Footer */
+        footer {
+            background: #f8f8f8;
+            padding: 60px 5% 30px;
+            color: #666;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            max-width: 1100px;
+            margin: 0 auto 40px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu, .nav-actions { display: none; }
+            .hamburger { display: block; }
+            .hero { flex-direction: column; text-align: center; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+            .hero-text h1 { font-size: 34px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">DragonGod</div>
+        <div class="nav-menu">
+            <a href="#design">Design</a>
+            <a href="#camera">Camera</a>
+            <a href="#display">Display</a>
+            <a href="#performance">Performance</a>
+            <a href="#battery">Battery</a>
+        </div>
+        <div class="nav-actions">
+            <span>🔍</span>
+            <span>🛒</span>
+            <button class="btn-reserve">Login / Reserve</button>
+        </div>
+        <div class="hamburger">☰</div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-img">
+            <img id="mainPhone" src="design-color-1.png" alt="Flagship Phone">
+        </div>
+        <div class="hero-text">
+            <h1>DragonGod X Pro Max</h1>
+            <p class="slogan">Redefine Premium Flagship Imaging</p>
+            <div class="hero-buttons">
+                <button class="btn-primary">Buy Now</button>
+                <button class="btn-secondary">View Specs</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design & Appearance -->
+    <section class="section" id="design">
+        <h2>Ultra Premium Design</h2>
+        <p>Sleek curvature, premium craftsmanship, iconic camera module</p>
+        <img class="full-img" src="DragonGodXProMax.png" alt="Design">
+    </section>
+
+    <!-- Camera System -->
+    <section class="section" id="camera">
+        <h2>Ultra Lighting Image System</h2>
+        <div class="grid-2">
+            <div>
+                <img src="design-color-1.png" style="width:100%;border-radius:8px;">
+            </div>
+            <div style="text-align:left;">
+                <h3>Professional-Grade Camera</h3>
+                <p>Main Camera • Ultra Wide • Telephoto • Front Camera</p>
+                <p>Stunning night mode, portrait, and ultra-clear photography</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Display -->
+    <section class="section" id="display">
+        <h2>Ultimate HD Eye-Care Flagship Flat Screen</h2>
+        <p>High resolution • High refresh rate • Peak brightness • Eye protection</p>
+        <div class="grid-3">
+            <div>6.85-inch</div>
+            <div>120Hz</div>
+            <div>2800 nits</div>
+        </div>
+    </section>
+
+    <!-- Performance -->
+    <section class="section" id="performance">
+        <h2>Flagship Performance + Smooth Experience</h2>
+        <p>Top processor, large RAM, efficient cooling system</p>
+    </section>
+
+    <!-- Battery -->
+    <section class="section" id="battery">
+        <h2>All-Day Battery & Fast Charging</h2>
+        <div class="grid-3">
+            <div>🔋 Large Battery</div>
+            <div>⚡ Wired Fast Charge</div>
+            <div>🔌 Wireless Charge</div>
+        </div>
+    </section>
+
+    <!-- Color Switcher -->
+    <section class="section">
+        <h2>Choose Your Color</h2>
+        <div class="color-switcher">
+            <div class="color-dot dot-orange active" data-color="Orange Sea"></div>
+            <div class="color-dot dot-purple" data-color="Sunset Purple"></div>
+            <div class="color-dot dot-green" data-color="Emerald Lake"></div>
+            <div class="color-dot dot-gold" data-color="Dawn Gold"></div>
+            <div class="color-dot dot-black" data-color="Obsidian Black"></div>
+        </div>
+    </section>
+
+    <!-- Specifications -->
+    <section class="section">
+        <h2>Full Specifications</h2>
+        <div class="spec-tabs">
+            <div class="spec-tab active">Core Specs</div>
+            <div class="spec-tab">Display</div>
+            <div class="spec-tab">Camera</div>
+            <div class="spec-tab">Battery</div>
+        </div>
+        <div class="spec-content">
+            <div class="spec-row"><span>Model</span><span>DragonGod X Pro Max</span></div>
+            <div class="spec-row"><span>Processor</span><span>Next-Gen Flagship Chip</span></div>
+            <div class="spec-row"><span>RAM</span><span>Up to 12GB</span></div>
+            <div class="spec-row"><span>Storage</span><span>Up to 1TB</span></div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="section" style="background:#f9f9f9;">
+        <h2>Buy Now</h2>
+        <div class="storage-options">
+            <div class="storage active">8+256GB</div>
+            <div class="storage">12+512GB</div>
+            <div class="storage">12+1TB</div>
+        </div>
+        <div class="price">$999</div>
+        <button class="btn-primary">Add to Cart</button>
+        <p style="margin-top:20px;">Nationwide warranty • Interest-free installments • Trade-in</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-top">
+            <div>
+                <h4>DragonGod</h4>
+                <p>Premium flagship technology</p>
+            </div>
+            <div>
+                <h4>Support</h4>
+                <p>Service Hotline: 400-123-4567</p>
+            </div>
+            <div>
+                <p>Privacy Policy</p>
+                <p>Terms of Service</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2025 DragonGod Phone. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Color Switcher
+        const dots = document.querySelectorAll('.color-dot');
+        const mainImg = document.getElementById('mainPhone');
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                dots.forEach(d => d.classList.remove('active'));
+                dot.classList.add('active');
+                mainImg.src = "https://via.placeholder.com/340x700/" + dot.classList[1].split('-')[1] + "/ffffff?text=" + dot.dataset.color;
+            });
+        });
+
+        // Spec Tabs
+        const tabs = document.querySelectorAll('.spec-tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+            });
+        });
+
+        // Storage Selector
+        const storages = document.querySelectorAll('.storage');
+        const price = document.querySelector('.price');
+        const prices = [999, 1199, 1499];
+        storages.forEach((sto, idx) => {
+            sto.addEventListener('click', () => {
+                storages.forEach(s => s.classList.remove('active'));
+                sto.classList.add('active');
+                price.innerText = '$' + prices[idx];
+            });
+        });
+    </script>
+</body>
+</html>
