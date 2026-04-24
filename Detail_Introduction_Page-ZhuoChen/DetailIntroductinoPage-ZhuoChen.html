@@ -40,6 +40,7 @@
             font-size: 22px;
             font-weight: 700;
             color: #111;
+            cursor: pointer; /* 添加鼠标指针样式 */
         }
 
         .nav-menu {
@@ -324,6 +325,19 @@
             line-height: 1.7;
         }
 
+        /* --- PERFORMANCE SECTION --- */
+        #performance img {
+            width: 100%;
+            transform: scale(1.05);
+            border-radius: 12px;
+        }
+
+        #performance .grid-2 div:first-child {
+            transform: scale(1.05);
+            line-height: 1.7;
+            text-align: left;
+        }
+
         /* --- COLOR SWITCHER --- */
         .color-preview {
             width: 100%;
@@ -432,6 +446,50 @@
             margin: 20px 0;
         }
 
+        /* --- BATTERY STATS --- */
+        .battery-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            max-width: 1050px;
+            margin: 0 auto;
+        }
+
+        .battery-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border-radius: 12px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            margin-top: 15%;
+            margin-left: 5%;
+            margin-right: 5%;
+        }
+
+        .battery-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .battery-card .icon {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #005bb5;
+        }
+
+        .battery-card .stat-number {
+            font-size: 38px;
+            font-weight: 700;
+            color: #005bb5;
+            margin: 10px 0;
+        }
+
+        .battery-card .stat-label {
+            font-size: 16px;
+            color: #666;
+        }
+
         /* --- FOOTER --- */
         footer {
             background: #f8f8f8;
@@ -462,8 +520,11 @@
                 gap: 30px;
                 padding: 0 20px;
             }
-            #camera img {
+            #camera img, #performance img {
                 transform: scale(1.02);
+            }
+            .battery-card .stat-number {
+                font-size: 32px;
             }
         }
 
@@ -477,12 +538,24 @@
                 grid-template-columns: 1fr;
                 gap: 25px;
             }
-            #camera .grid-2 div:last-child {
+            #camera .grid-2 div:last-child, #performance .grid-2 div:first-child {
                 text-align: center;
                 transform: scale(1);
             }
             .section h2 {
                 font-size: 26px;
+            }
+            /* Battery stats responsive */
+            .battery-stats {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 0 20px;
+            }
+            .battery-card {
+                padding: 25px 15px;
+            }
+            .battery-card .stat-number {
+                font-size: 30px;
             }
         }
 
@@ -503,6 +576,9 @@
             .section {
                 padding: 50px 15px;
             }
+            .battery-card .stat-number {
+                font-size: 28px;
+            }
         }
     </style>
 </head>
@@ -511,7 +587,8 @@
 
     <!-- NAV -->
     <nav>
-        <div class="logo">DragonGod</div>
+        <!-- Logo 添加点击跳转事件 -->
+        <div class="logo" id="logo">DragonGod</div>
         <div class="nav-menu">
             <a href="#design">Design</a>
             <a href="#camera">Camera</a>
@@ -524,8 +601,10 @@
                 <input type="text" class="search-input" placeholder="Search...">
                 <span id="searchIcon">🔍</span>
             </div>
-            <span>🛒</span>
-            <button class="btn-reserve">Login / Reserve</button>
+            <!-- 购物车图标 添加点击跳转事件 -->
+            <span id="cartIcon">🛒</span>
+            <!-- Login/Reserve 按钮 添加点击跳转事件 -->
+            <button class="btn-reserve" id="loginReserveBtn">Login / Reserve</button>
         </div>
         <div class="hamburger" id="hamburger">☰</div>
     </nav>
@@ -537,8 +616,8 @@
         <a href="#display">Display</a>
         <a href="#performance">Performance</a>
         <a href="#battery">Battery</a>
-        <a href="#">Login</a>
-        <a href="#">Cart</a>
+        <a href="../Login_Xwk/Login.html">Login</a>
+        <a href="../SellPage/SellPage.html">Cart</a>
     </div>
 
     <!-- HERO -->
@@ -595,15 +674,38 @@
     <section class="section" id="performance">
         <h2>Flagship Performance + Smooth Experience</h2>
         <p>Top processor, large RAM, efficient cooling system</p>
+        <div class="grid-2">
+            <div>
+                <h3>Next-Gen Processing Power</h3>
+                <p>Equipped with the latest 4nm flagship processor, delivering up to 35% higher performance and 20% lower power consumption compared to previous generation.</p>
+                <p>12GB LPDDR5X ultra-fast RAM ensures seamless multitasking, while the advanced vapor chamber cooling system keeps temperatures in check even during intense gaming sessions.</p>
+                <p>UFS 4.0 storage provides lightning-fast read/write speeds for instant app launches and smooth file transfers.</p>
+            </div>
+            <div>
+                <img src="DragonGodXProMaxPerformance.png" alt="Performance">
+            </div>
+        </div>
     </section>
 
     <!-- BATTERY -->
     <section class="section" id="battery">
         <h2>All-Day Battery & Fast Charging</h2>
-        <div class="grid-3">
-            <div>🔋 Large Battery</div>
-            <div>⚡ Wired Fast Charge</div>
-            <div>🔌 Wireless Charge</div>
+        <div class="battery-stats">
+            <div class="battery-card">
+                <div class="icon">🔋</div>
+                <div class="stat-number" id="batteryNum">0</div>
+                <div class="stat-label">Large Battery (mAh)</div>
+            </div>
+            <div class="battery-card">
+                <div class="icon">⚡</div>
+                <div class="stat-number" id="wiredChargeNum">0</div>
+                <div class="stat-label">Wired Fast Charge (W)</div>
+            </div>
+            <div class="battery-card">
+                <div class="icon">🔌</div>
+                <div class="stat-number" id="wirelessChargeNum">0</div>
+                <div class="stat-label">Wireless Charge (W)</div>
+            </div>
         </div>
     </section>
 
@@ -667,7 +769,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            © 2025 DragonGod Technology. All rights reserved.
+            © 2026 DragonGod Phone. All rights reserved.
         </div>
     </footer>
 
@@ -736,6 +838,53 @@
                 sto.classList.add('active');
                 price.innerText = '$' + prices[idx];
             });
+        });
+
+        // BATTERY NUMBER COUNTER ANIMATION
+        function animateNumber(elementId, target, duration = 2000) {
+            const element = document.getElementById(elementId);
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current);
+            }, 16);
+        }
+
+        // Intersection Observer to trigger animation when battery section is in view
+        const batterySection = document.getElementById('battery');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateNumber('batteryNum', 5800);
+                    animateNumber('wiredChargeNum', 120);
+                    animateNumber('wirelessChargeNum', 50);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        observer.observe(batterySection);
+
+        const logo = document.getElementById('logo');
+        logo.addEventListener('click', () => {
+            window.location.href = '../HomePage_Chen Hetian/index.html';
+        });
+
+        const cartIcon = document.getElementById('cartIcon');
+        cartIcon.addEventListener('click', () => {
+            window.location.href = '../SellPage/SellPage.html';
+        });
+
+        const loginReserveBtn = document.getElementById('loginReserveBtn');
+        loginReserveBtn.addEventListener('click', () => {
+            window.location.href = '../Login_Xwk/Login.html';
         });
     </script>
 </body>
