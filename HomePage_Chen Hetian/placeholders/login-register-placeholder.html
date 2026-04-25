@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserved Login / Registration Route</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 24px;
+            font-family: "Segoe UI", sans-serif;
+            background: linear-gradient(135deg, #0f1e2f, #1f3a4d 45%, #f06a36);
+            color: #191511;
+        }
+
+        .panel {
+            width: min(720px, 100%);
+            padding: 36px;
+            border-radius: 28px;
+            background: rgba(255, 252, 247, 0.94);
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
+        }
+
+        code {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 10px;
+            background: #f3e9df;
+        }
+
+        ul {
+            line-height: 1.8;
+        }
+
+        a {
+            color: #0f1e2f;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <main class="panel">
+        <p>Reserved interface for Team Member A</p>
+        <h1 id="page-title">Login / Registration Placeholder</h1>
+        <p>This local placeholder keeps the homepage jump logic working until the real page is delivered.</p>
+
+        <h2>Query contract</h2>
+        <ul id="params"></ul>
+
+        <h2>Required integration fields</h2>
+        <ul>
+            <li><code>mode</code>: login or register</li>
+            <li><code>source</code>: caller page, currently homepage</li>
+            <li><code>redirect</code>: recommended post-auth destination</li>
+        </ul>
+
+        <p><a href="../index.html">Return to HomePage</a></p>
+    </main>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const mode = params.get("mode") || "login";
+        document.getElementById("page-title").textContent = mode === "register"
+            ? "Registration Placeholder"
+            : "Login Placeholder";
+
+        const list = document.getElementById("params");
+        [...params.entries()].forEach(([key, value]) => {
+            const item = document.createElement("li");
+            item.textContent = `${key}: ${value}`;
+            list.appendChild(item);
+        });
+
+        if (!list.children.length) {
+            const item = document.createElement("li");
+            item.textContent = "No query parameters received.";
+            list.appendChild(item);
+        }
+    </script>
+</body>
+</html>
