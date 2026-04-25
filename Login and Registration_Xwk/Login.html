@@ -3,12 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Login page title for DragonGod Phone mobile sales platform -->
     <title>DragonGod Phone - Account Login</title>
-    <!-- Import Font Awesome for password visibility toggle icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Reset default browser styles */
         * {
             margin: 0;
             padding: 0;
@@ -38,20 +35,23 @@
             letter-spacing: 1px;
         }
 
-        /* Global Login title (centered above login area) */
+        /* Global Login title - responsive and centered */
         .form-main-title {
             font-size: 32px;
             font-weight: 500;
             color: #222222;
             text-align: center;
-            margin-bottom: 30px; /* Spacing between title and login content */
+            margin: 0 auto 30px;
+            width: 100%;
+            max-width: 920px;
+            padding: 0 20px;
         }
 
         /* Main login content container - two column layout */
         .login-container {
             width: 100%;
             max-width: 920px;
-            margin: 30px auto 0; /* Adjusted top margin to align with new title position */
+            margin: 30px auto 0;
             display: flex;
             align-items: flex-start;
             gap: 60px;
@@ -64,18 +64,18 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: -60px;
+            margin-top: -30px;
         }
         .qrcode-box {
             background: #ffffff;
             border-radius: 8px;
-            padding: 32px; /* White padding around QR code */
+            padding: 16px;
             box-shadow: 0 0 6px rgba(0,0,0,0.05);
-            margin-bottom: 32px; /* Spacing between QR code and tip text */
+            margin-bottom: 16px;
         }
         .qrcode-img {
-            width: 240px; /* QR code dimensions */
-            height: 240px; /* Keep square aspect ratio */
+            width: 240px;
+            height: 240px;
         }
         .qrcode-tip-text {
             font-size: 13px;
@@ -84,14 +84,14 @@
             line-height: 1.6;
         }
 
-        /* Vertical divider line between two columns */
+        /* Vertical divider line */
         .vertical-line {
             width: 1px;
             background-color: #eeeeee;
             min-height: 340px;
         }
 
-        /* Right column: account password login form section */
+        /* Right column: account password login form */
         .login-form-area {
             flex: 1;
         }
@@ -134,13 +134,16 @@
             color: #666666;
         }
 
-        /* SMS verification code login link */
+        /* SMS verification code login link - underline on hover */
         .sms-login-link {
             display: inline-block;
             font-size: 14px;
             color: #0066cc;
             text-decoration: none;
             margin-bottom: 28px;
+        }
+        .sms-login-link:hover {
+            text-decoration: underline;
         }
 
         /* Login submit button */
@@ -161,19 +164,26 @@
             opacity: 0.92;
         }
 
-        /* Bottom auxiliary links: Register | Forgot Password | Help */
+        /* Bottom auxiliary links - underline on hover */
         .bottom-form-links {
             display: flex;
             justify-content: center;
-            gap: 18px;
+            align-items: center;
+            gap: 0;
             font-size: 14px;
         }
         .bottom-form-links a {
             color: #0066cc;
             text-decoration: none;
+            margin: 0 9px;
         }
+        .bottom-form-links a:hover {
+            text-decoration: underline;
+        }
+        /* Link divider universal style */
         .link-divider {
             color: #dddddd;
+            line-height: 1;
         }
 
         /* Form error message styles */
@@ -184,7 +194,7 @@
             display: none;
         }
 
-        /* Page footer copyright section */
+        /* Page footer - underline on hover */
         .page-footer {
             background-color: #f5f5f5;
             padding: 24px 0;
@@ -195,57 +205,74 @@
         }
         .footer-links {
             margin-bottom: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .footer-links a {
             color: #666666;
             text-decoration: none;
             margin: 0 12px;
         }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
         .footer-copyright {
             color: #999999;
         }
-/* Responsive adaptation for mobile devices */
-@media (max-width: 768px) {
-    .login-container {
-        flex-direction: column;
-        gap: 30px;
-        margin-top: 20px;
-    }
 
-    .qrcode-area {
-        margin-top: 0;
-    }
+        /* Responsive adaptation */
+        @media (max-width: 768px) {
+            /* Center the login container on mobile */
+            .login-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+                margin: 20px auto 0;
+            }
 
-    .vertical-line {
-        width: 100%;
-        height: 1px;
-        min-height: auto;
-    }
+            .qrcode-area {
+                margin-top: 0;
+                width: 100%;
+                align-items: center;
+            }
 
-    .form-main-title {
-        font-size: 24px;
-        margin-bottom: 20px;
-    }
+            .vertical-line {
+                width: 100%;
+                height: 1px;
+                min-height: auto;
+            }
 
-    .qrcode-img {
-        width: 180px;
-        height: 180px;
-    }
-}
+            .form-main-title {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+
+            .qrcode-img {
+                width: 180px;
+                height: 180px;
+            }
+
+            .login-form-area {
+                width: 100%;
+                max-width: 320px;
+            }
+
+            .footer-links a {
+                margin: 0 6px;
+                font-size: 11px;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Top header bar with brand logo text -->
     <header class="page-header">
         <div class="brand-logo-text">DragonGod Phone</div>
     </header>
 
-    <!-- Global Login title (centered above both login options) -->
     <h1 class="form-main-title">DragonGod Account Login</h1>
 
-    <!-- Main two-column login content -->
     <main class="login-container">
-        <!-- Left QR Code Login Section -->
         <section class="qrcode-area">
             <div class="qrcode-box">
                 <img src="QRcode.png" class="qrcode-img" alt="Scan to login">
@@ -253,12 +280,9 @@
             <p class="qrcode-tip-text">Use DragonGod Phone App > Scan to login</p>
         </section>
 
-        <!-- Middle vertical divider line -->
         <div class="vertical-line"></div>
 
-        <!-- Right Account Password Login Form Section -->
         <section class="login-form-area">
-            <!-- Account Input Field -->
             <div class="form-item">
                 <div class="input-wrapper">
                     <input type="text" class="form-input" id="accountInput" placeholder="Phone Number / Email Address / Username">
@@ -266,7 +290,6 @@
                 <div class="error-message" id="accountError">Account cannot be empty</div>
             </div>
 
-            <!-- Password Input Field with visibility toggle -->
             <div class="form-item">
                 <div class="input-wrapper">
                     <input type="password" class="form-input" id="passwordInput" placeholder="Password">
@@ -277,36 +300,34 @@
                 <div class="error-message" id="passwordError">Password cannot be empty</div>
             </div>
 
-            <!-- SMS Verification Code Login Link -->
-            <a href="#" class="sms-login-link">Login with SMS Verification Code</a>
+            <a href="SMS.html" class="sms-login-link">Login with SMS Verification Code</a>
 
-            <!-- Login Submit Button -->
             <button class="login-submit-btn" id="loginBtn">Login</button>
 
-            <!-- Bottom Auxiliary Links -->
             <div class="bottom-form-links">
-                <a href="#">Register</a>
+                <a href="Registration.html">Register</a>
                 <span class="link-divider">|</span>
-                <a href="#">Forgot Password</a>
+                <a href="ForgotPassword.html">Forgot Password</a>
                 <span class="link-divider">|</span>
-                <a href="#">Help</a>
+                <a href="Help.html">Help</a>
             </div>
         </section>
     </main>
 
-    <!-- Page Footer with legal links and copyright -->
     <footer class="page-footer">
         <div class="footer-links">
-            <a href="#">User Agreement</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">FAQ</a>
-            <a href="#">Cookies</a>
+            <a href="User.html">User Agreement</a>
+            <span class="link-divider">|</span>
+            <a href="Privacy.html">Privacy Policy</a>
+            <span class="link-divider">|</span>
+            <a href="FAQ.html">FAQ</a>
+            <span class="link-divider">|</span>
+            <a href="Cookies.html">Cookies</a>
         </div>
         <div class="footer-copyright">Copyright © 2011-2026 DragonGod Phone. All rights reserved.</div>
     </footer>
 
     <script>
-        // Get all DOM elements
         const accountInput = document.getElementById('accountInput');
         const passwordInput = document.getElementById('passwordInput');
         const accountError = document.getElementById('accountError');
@@ -318,36 +339,31 @@
         // Toggle password visibility
         eyeBtn.addEventListener('click', function(){
             if(passwordInput.type === 'password'){
-                // Show password
                 passwordInput.type = 'text';
                 eyeIcon.classList.remove('fa-eye-slash');
                 eyeIcon.classList.add('fa-eye');
             }else{
-                // Hide password
                 passwordInput.type = 'password';
                 eyeIcon.classList.remove('fa-eye');
                 eyeIcon.classList.add('fa-eye-slash');
             }
         });
 
-        // Login form validation logic
+        // Login form validation
         loginBtn.addEventListener('click', function(){
             let loginValid = true;
-            // Validate account input is not empty
             if(!accountInput.value.trim()){
                 accountError.style.display = 'block';
                 loginValid = false;
             }else{
                 accountError.style.display = 'none';
             }
-            // Validate password input is not empty
             if(!passwordInput.value.trim()){
                 passwordError.style.display = 'block';
                 loginValid = false;
             }else{
                 passwordError.style.display = 'none';
             }
-            // Show success message if validation passes
             if(loginValid){
                 alert('Login Successful! Welcome to DragonGod Phone Sales Platform');
             }
