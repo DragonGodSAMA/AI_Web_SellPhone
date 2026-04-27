@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserved Detail Introduction Route</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            padding: 24px;
+            display: grid;
+            place-items: center;
+            font-family: "Segoe UI", sans-serif;
+            background: linear-gradient(180deg, #f6efe7, #fff9f1);
+            color: #191511;
+        }
+
+        .panel {
+            width: min(760px, 100%);
+            padding: 36px;
+            border-radius: 28px;
+            background: #ffffff;
+            box-shadow: 0 20px 48px rgba(42, 24, 12, 0.12);
+        }
+
+        code {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 10px;
+            background: #f3e9df;
+        }
+
+        ul {
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <main class="panel">
+        <p>Reserved interface for Team Member B</p>
+        <h1>Detail Introduction Placeholder</h1>
+        <p>This route is linked from the homepage hero, story blocks, and footer, so the final detail page should preserve the same query interface.</p>
+
+        <h2>Query contract</h2>
+        <ul id="params"></ul>
+
+        <h2>Required integration fields</h2>
+        <ul>
+            <li><code>product</code>: product identifier</li>
+            <li><code>section</code>: target narrative block from the homepage</li>
+            <li><code>scene</code>: optional trigger context</li>
+        </ul>
+
+        <p><a href="../index.html">Return to HomePage</a></p>
+    </main>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const list = document.getElementById("params");
+        [...params.entries()].forEach(([key, value]) => {
+            const item = document.createElement("li");
+            item.textContent = `${key}: ${value}`;
+            list.appendChild(item);
+        });
+
+        if (!list.children.length) {
+            const item = document.createElement("li");
+            item.textContent = "No query parameters received.";
+            list.appendChild(item);
+        }
+    </script>
+</body>
+</html>
