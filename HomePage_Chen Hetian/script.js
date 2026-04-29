@@ -1,6 +1,6 @@
 const routes = {
     login: {
-        path: "./placeholders/login-register-placeholder.html",
+        path: "../Login and Registration_Xwk/Login.html",
         defaultParams: {
             mode: "login",
             source: "homepage",
@@ -8,7 +8,7 @@ const routes = {
         }
     },
     register: {
-        path: "./placeholders/login-register-placeholder.html",
+        path: "../Login and Registration_Xwk/Registration.html",
         defaultParams: {
             mode: "register",
             source: "homepage",
@@ -16,7 +16,7 @@ const routes = {
         }
     },
     detail: {
-        path: "./placeholders/detail-introduction-placeholder.html",
+        path: "../Detail_Introduction_Page-ZhuoChen/DetailIntroductinoPage-ZhuoChen.html",
         defaultParams: {
             product: "aether-fold-one",
             section: "story",
@@ -24,7 +24,7 @@ const routes = {
         }
     },
     sell: {
-        path: "./placeholders/sell-placeholder.html",
+        path: "../SellPage/SellPage.html",
         defaultParams: {
             sku: "aether-fold-one-512",
             campaign: "homepage",
