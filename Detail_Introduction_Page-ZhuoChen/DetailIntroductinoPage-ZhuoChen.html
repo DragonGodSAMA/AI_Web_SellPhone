@@ -505,7 +505,13 @@
             max-width: 1100px;
             margin: 0 auto 40px;
         }
-
+        .footer-link {
+            color: #666;
+            text-decoration: none;
+        }
+        .footer-link:hover {
+            text-decoration: underline;
+        }
         .footer-bottom {
             text-align: center;
             padding-top: 20px;
@@ -616,7 +622,7 @@
         <a href="#display">Display</a>
         <a href="#performance">Performance</a>
         <a href="#battery">Battery</a>
-        <a href="../Login_Xwk/Login.html">Login</a>
+        <a href="../Login and Registration_Xwk/Login.html">Login</a>
         <a href="../SellPage/SellPage.html">Cart</a>
     </div>
 
@@ -629,8 +635,8 @@
             <h1>DragonGod X Pro Max</h1>
             <p class="slogan">Redefine Premium Flagship Imaging</p>
             <div class="hero-buttons">
-                <button class="btn-primary">Buy Now</button>
-                <button class="btn-secondary">View Specs</button>
+                <a href="../SellPage/SellPage.html" class="btn-primary" style="text-decoration: none;">Buy Now</a>
+                <a href="#design" class="btn-secondary" style="text-decoration: none;">View Specs</a>
             </div>
         </div>
     </section>
@@ -748,7 +754,7 @@
             <div class="storage">12+1TB</div>
         </div>
         <div class="price">$999</div>
-        <button class="btn-primary">Add to Cart</button>
+        <a href="../SellPage/SellPage.html" class="btn-primary" style="text-decoration: none;">Buy Now</a>
         <p style="margin-top:20px;">Nationwide warranty • Interest-free installments • Trade-in</p>
     </section>
 
@@ -764,8 +770,8 @@
                 <p>Service Hotline: 400-123-4567</p>
             </div>
             <div>
-                <p>Privacy Policy</p>
-                <p>Terms of Service</p>
+                <h4>Policy</h4>
+                <a href="../Login and Registration_Xwk/Privacy.html" class="footer-link">Privacy Policy</a>
             </div>
         </div>
         <div class="footer-bottom">
@@ -884,7 +890,7 @@
 
         const loginReserveBtn = document.getElementById('loginReserveBtn');
         loginReserveBtn.addEventListener('click', () => {
-            window.location.href = '../Login_Xwk/Login.html';
+            window.location.href = '../Login and Registration_Xwk/Login.html';
         });
     </script>
 </body>
