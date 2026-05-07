@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Register page for DragonGod Phone mobile sales platform -->
-    <title>DragonGod Phone - Register</title>
+    <!-- Seller Register page for DragonGod Phone mobile sales platform -->
+    <title>DragonGod Phone - Seller Register</title>
     <!-- Import Font Awesome for password visibility toggle icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -78,6 +78,7 @@
         }
         .form-input::placeholder {
             color: #999999;
+            font-size: 14px;
         }
 
         /* Password visibility toggle button */
@@ -91,6 +92,7 @@
             cursor: pointer;
             font-size: 18px;
             color: #666666;
+            z-index: 10;
         }
 
         /* Register submit button */
@@ -155,6 +157,12 @@
                 font-size: 24px;
                 margin-bottom: 20px;
             }
+            .page-header {
+                padding: 15px 20px;
+            }
+            .brand-logo-text {
+                font-size: 18px;
+            }
         }
     </style>
 </head>
@@ -165,51 +173,78 @@
     </header>
 
     <!-- Centered Register Title -->
-    <h1 class="form-main-title">Create Account</h1>
+    <h1 class="form-main-title">Account Registration</h1>
 
     <!-- Register Form -->
     <div class="register-container">
-        <!-- Username Input -->
+        <!-- 1. Name Input (Only alphabetical letters and space) -->
         <div class="form-item">
             <div class="input-wrapper">
-                <input type="text" class="form-input" id="username" placeholder="Full Name">
+                <input type="text" class="form-input" id="fullName" placeholder="Full Name">
             </div>
-            <div class="error-message" id="nameError">Full name cannot be empty</div>
+            <div class="error-message" id="nameError">Name can only contain alphabetical letters and spaces</div>
         </div>
 
-        <!-- Email Input -->
+        <!-- 2. Address Input (Only alphanumeric characters and space) -->
+        <div class="form-item">
+            <div class="input-wrapper">
+                <input type="text" class="form-input" id="address" placeholder="Address">
+            </div>
+            <div class="error-message" id="addressError">Address can only contain alphanumeric characters and spaces</div>
+        </div>
+
+        <!-- 3. China Phone Number Input -->
+        <div class="form-item">
+            <div class="input-wrapper">
+                <input type="text" class="form-input" id="phoneNumber" placeholder="China Phone Number">
+            </div>
+            <div class="error-message" id="phoneError">Please enter a valid China mainland phone number</div>
+        </div>
+
+        <!-- 4. Email Address Input -->
         <div class="form-item">
             <div class="input-wrapper">
                 <input type="text" class="form-input" id="email" placeholder="Email Address">
             </div>
-            <div class="error-message" id="emailError">Email cannot be empty</div>
+            <div class="error-message" id="emailError">Email must contain exactly one @ and end with .com or .cn</div>
         </div>
 
-        <!-- Password Input -->
+        <!-- 5. Username Input (Min. 6 alphanumeric characters) -->
+        <div class="form-item">
+            <div class="input-wrapper">
+                <input type="text" class="form-input" id="username" placeholder="Username">
+            </div>
+            <div class="error-message" id="usernameError">Username must be at least 6 alphanumeric characters</div>
+        </div>
+
+        <!-- 6. Password Input (Min. 6 alphanumeric characters) -->
         <div class="form-item">
             <div class="input-wrapper">
                 <input type="password" class="form-input" id="password" placeholder="Password">
-                <button class="eye-toggle-btn" id="eyeBtn">
+                <button class="eye-toggle-btn" id="passwordEyeBtn">
                     <i class="fa-solid fa-eye-slash"></i>
                 </button>
             </div>
-            <div class="error-message" id="pwdError">Password cannot be empty</div>
+            <div class="error-message" id="pwdError">Password must be at least 6 alphanumeric characters</div>
         </div>
 
-        <!-- Confirm Password Input -->
+        <!-- 7. Confirm Password Input -->
         <div class="form-item">
             <div class="input-wrapper">
                 <input type="password" class="form-input" id="confirmPwd" placeholder="Confirm Password">
+                <button class="eye-toggle-btn" id="confirmEyeBtn">
+                    <i class="fa-solid fa-eye-slash"></i>
+                </button>
             </div>
-            <div class="error-message" id="confirmError">Please confirm your password</div>
+            <div class="error-message" id="confirmError">Two passwords do not match</div>
         </div>
 
         <!-- Register Button -->
-        <button class="register-submit-btn" id="registerBtn">Register</button>
+        <button class="register-submit-btn" id="registerBtn">Complete Seller Registration</button>
 
         <!-- Go to Login Link -->
         <div class="bottom-link">
-            Already have an account? <a href="Login.html">Login Now</a>
+            Already have a account? <a href="Login.html">Login Now</a>
         </div>
     </div>
 
@@ -225,106 +260,156 @@
     </footer>
 
     <script>
-        // Get elements
-        const username = document.getElementById('username');
+        // Get all form elements
+        const fullName = document.getElementById('fullName');
+        const address = document.getElementById('address');
+        const phoneNumber = document.getElementById('phoneNumber');
         const email = document.getElementById('email');
+        const username = document.getElementById('username');
         const password = document.getElementById('password');
         const confirmPwd = document.getElementById('confirmPwd');
-        const eyeBtn = document.getElementById('eyeBtn');
-        const eyeIcon = eyeBtn.querySelector('i');
+        // Password visibility toggle elements
+        const passwordEyeBtn = document.getElementById('passwordEyeBtn');
+        const passwordEyeIcon = passwordEyeBtn.querySelector('i');
+        const confirmEyeBtn = document.getElementById('confirmEyeBtn');
+        const confirmEyeIcon = confirmEyeBtn.querySelector('i');
         const registerBtn = document.getElementById('registerBtn');
 
-        // Toggle password visibility
-        eyeBtn.addEventListener('click', function(){
+        // Toggle password visibility for main password input
+        passwordEyeBtn.addEventListener('click', function(){
             if(password.type === 'password'){
                 password.type = 'text';
-                eyeIcon.classList.remove('fa-eye-slash');
-                eyeIcon.classList.add('fa-eye');
+                passwordEyeIcon.classList.remove('fa-eye-slash');
+                passwordEyeIcon.classList.add('fa-eye');
             }else{
                 password.type = 'password';
-                eyeIcon.classList.remove('fa-eye');
-                eyeIcon.classList.add('fa-eye-slash');
+                passwordEyeIcon.classList.remove('fa-eye');
+                passwordEyeIcon.classList.add('fa-eye-slash');
             }
         });
 
+        // Toggle password visibility for confirm password input
+        confirmEyeBtn.addEventListener('click', function(){
+            if(confirmPwd.type === 'password'){
+                confirmPwd.type = 'text';
+                confirmEyeIcon.classList.remove('fa-eye-slash');
+                confirmEyeIcon.classList.add('fa-eye');
+            }else{
+                confirmPwd.type = 'password';
+                confirmEyeIcon.classList.remove('fa-eye');
+                confirmEyeIcon.classList.add('fa-eye-slash');
+            }
+        });
+
+        // Validation functions (strictly match requirements)
+        // 1. Name validation: only alphabetical letters and spaces
+        function isNameValid(nameVal) {
+            const nameReg = /^[a-zA-Z\s]+$/;
+            return nameReg.test(nameVal.trim()) && nameVal.trim().length > 0;
+        }
+
+        // 2. Address validation: only alphanumeric characters and spaces
+        function isAddressValid(addressVal) {
+            const addressReg = /^[a-zA-Z0-9\s]+$/;
+            return addressReg.test(addressVal.trim()) && addressVal.trim().length > 0;
+        }
+
+        // 3. China phone number validation: 11 digits, starts with 1, second digit 3-9
+        function isPhoneValid(phoneVal) {
+            const phoneReg = /^1[3-9]\d{9}$/;
+            return phoneReg.test(phoneVal.trim());
+        }
+
+        // 4. Email validation: exactly one @, ends with .com or .cn
         function isEmailValid(emailVal) {
-            const reg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return reg.test(emailVal);
+            const trimmedEmail = emailVal.trim();
+            // Check exactly one @
+            const atCount = (trimmedEmail.match(/@/g) || []).length;
+            if(atCount !== 1) return false;
+            // Check ends with .com or .cn
+            const emailReg = /^[^\s@]+@[^\s@]+\.(com|cn)$/;
+            return emailReg.test(trimmedEmail);
         }
 
-        function isPasswordStrong(pwdVal) {
-            return pwdVal.length >= 6;
+        // 5. Username validation: at least 6 alphanumeric characters
+        function isUsernameValid(usernameVal) {
+            const usernameReg = /^[a-zA-Z0-9]{6,}$/;
+            return usernameReg.test(usernameVal.trim());
         }
 
+        // 6. Password validation: at least 6 alphanumeric characters
+        function isPasswordValid(pwdVal) {
+            const pwdReg = /^[a-zA-Z0-9]{6,}$/;
+            return pwdReg.test(pwdVal.trim());
+        }
+
+        // 7. Password match validation
         function isPasswordMatch(pwd1, pwd2) {
             return pwd1 === pwd2;
         }
 
-        // Register validation
+        // Hide error message when user starts typing
+        const allInputs = document.querySelectorAll('.form-input');
+        allInputs.forEach(input => {
+            input.addEventListener('input', function() {
+                const errorEl = this.parentElement.nextElementSibling;
+                if(errorEl && errorEl.classList.contains('error-message')) {
+                    errorEl.style.display = 'none';
+                }
+            });
+        });
+
+        // Full registration validation on button click
         registerBtn.addEventListener('click', function(){
-            let valid = true;
+            let isFormValid = true;
 
-            // Empty check
-            if(!username.value.trim()){
+            // Validate each field in order
+            // Name validation
+            if(!isNameValid(fullName.value)){
                 document.getElementById('nameError').style.display = 'block';
-                valid = false;
-            }else{
-                document.getElementById('nameError').style.display = 'none';
+                isFormValid = false;
             }
 
-            if(!email.value.trim()){
-                document.getElementById('emailError').innerText = "Email cannot be empty";
+            // Address validation
+            if(!isAddressValid(address.value)){
+                document.getElementById('addressError').style.display = 'block';
+                isFormValid = false;
+            }
+
+            // Phone number validation
+            if(!isPhoneValid(phoneNumber.value)){
+                document.getElementById('phoneError').style.display = 'block';
+                isFormValid = false;
+            }
+
+            // Email validation
+            if(!isEmailValid(email.value)){
                 document.getElementById('emailError').style.display = 'block';
-                valid = false;
-            }else{
-                document.getElementById('emailError').style.display = 'none';
+                isFormValid = false;
             }
 
-            if(!password.value.trim()){
-                document.getElementById('pwdError').innerText = "Password cannot be empty";
+            // Username validation
+            if(!isUsernameValid(username.value)){
+                document.getElementById('usernameError').style.display = 'block';
+                isFormValid = false;
+            }
+
+            // Password validation
+            if(!isPasswordValid(password.value)){
                 document.getElementById('pwdError').style.display = 'block';
-                valid = false;
-            }else{
-                document.getElementById('pwdError').style.display = 'none';
+                isFormValid = false;
             }
 
-            if(!confirmPwd.value.trim()){
-                document.getElementById('confirmError').innerText = "Please confirm your password";
+            // Confirm password validation
+            if(!isPasswordMatch(password.value, confirmPwd.value)){
                 document.getElementById('confirmError').style.display = 'block';
-                valid = false;
-            }else{
-                document.getElementById('confirmError').style.display = 'none';
+                isFormValid = false;
             }
 
-            // Enhanced validation after empty check
-            if(valid){
-                let pass = true;
-
-                // Email format check
-                if(!isEmailValid(email.value.trim())){
-                    document.getElementById('emailError').innerText = "Please enter a valid email address";
-                    document.getElementById('emailError').style.display = 'block';
-                    pass = false;
-                }
-
-                // Password strength check (at least 6 characters)
-                if(!isPasswordStrong(password.value.trim())){
-                    document.getElementById('pwdError').innerText = "Password must contain at least 6 characters";
-                    document.getElementById('pwdError').style.display = 'block';
-                    pass = false;
-                }
-
-                // Password match check
-                if(!isPasswordMatch(password.value, confirmPwd.value)){
-                    document.getElementById('confirmError').innerText = "Two passwords do not match";
-                    document.getElementById('confirmError').style.display = 'block';
-                    pass = false;
-                }
-
-                if(pass){
-                    alert('Registration Successful! Please login.');
-                    window.location.href = 'Login.html';
-                }
+            // If all validation passed
+            if(isFormValid){
+                alert('Seller Registration Successful! Please login to your account.');
+                window.location.href = 'Login.html';
             }
         });
     </script>
